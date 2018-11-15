@@ -1,5 +1,4 @@
 ## 📝 Author
-[<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/854371/profile/profile-80_2.jpg" align="right">](http://ddcreationstudios.at/)
 
 ##### Matteo Mendula<kbd>[Github](https://github.com/MatteoMendula) / 
 
