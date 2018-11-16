@@ -5,15 +5,31 @@ var mongoose = require('mongoose');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 
+var mongoURI = 'mongodb://matte:francy2008@ds161653.mlab.com:61653/login';
+
 //connect to MongoDB
-mongoose.connect('mongodb://user:psswd@ds161653.mlab.com:61653/dbname');
-var db = mongoose.connection;
+//mongoose.connect('mongodb://matte:francY2008@ds161653.mlab.com:61653/login');
+//var db = mongoose.connection;
+
+var promise = mongoose.connect(mongoURI, {
+  useMongoClient: true,
+  socketTimeoutMS: 0,
+  keepAlive: true,
+  reconnectTries: 30
+});
+
+promise.then(function(db) {
+	db.on('error', console.error.bind(console, 'connection error:'));
+	db.once('open', function () {
+	// we're connected!
+	});
+});
 
 //handle mongo error
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function () {
+//db.on('error', console.error.bind(console, 'connection error:'));
+//db.once('open', function () {
   // we're connected!
-});
+//});
 
 //use sessions for tracking logins
 app.use(session({
@@ -21,7 +37,8 @@ app.use(session({
   resave: true,
   saveUninitialized: false,
   store: new MongoStore({
-    mongooseConnection: db
+	//mongooseConnection: db
+    mongooseConnection: promise
   })
 }));
 
