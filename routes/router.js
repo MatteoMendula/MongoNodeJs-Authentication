@@ -4,10 +4,11 @@ var User = require('../models/user');
 
 
 // GET route for reading data
+/*          NOT WORKING -> wrong path
 router.get('/', function (req, res, next) {
   return res.sendFile(path.join(__dirname + '/templateLogReg/index.html'));
 });
-
+*/
 
 //POST route for updating data
 router.post('/', function (req, res, next) {
